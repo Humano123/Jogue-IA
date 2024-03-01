@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedra, Papel ou Tesoura</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: aqua; /* Sky Blue para o céu */
+            background-image: url('nuvens.jpg'); /* Substitua 'nuvens.jpg' pelo caminho da sua imagem de nuvens */
+            background-size: cover;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #game-container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <h1>Pedra, Papel ou Tesoura?</h1>
+    <button onclick="jogar('pedra')">Pedra</button>
+    <button onclick="jogar('papel')">Papel</button>
+    <button onclick="jogar('tesoura')">Tesoura</button>
+    <div id="result"></div>
+</div>
+
+<script>
+    function jogar(escolhaUsuario) {
+        var escolhas = ['pedra', 'papel', 'tesoura'];
+        var escolhaComputador = escolhas[Math.floor(Math.random() * 3)];
+
+        var resultado = '';
+
+        if (escolhaUsuario === escolhaComputador) {
+            resultado = 'Empate!';
+        } else if (
+            (escolhaUsuario === 'pedra' && escolhaComputador === 'tesoura') ||
+            (escolhaUsuario === 'papel' && escolhaComputador === 'pedra') ||
+            (escolhaUsuario === 'tesoura' && escolhaComputador === 'papel')
+        ) {
+            resultado = 'Você venceu!';
+        } else {
+            resultado = 'Você perdeu!';
+        }
+
+        document.getElementById('result').innerText = `Você escolheu ${escolhaUsuario}. a IA escolheu ${escolhaComputador}. ${resultado}`;
+    
+    }
+</script>
+
+</body>
+</html>
